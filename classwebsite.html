@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Website</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Class Website</h1>
+    </header>
+    <main>
+        <section>
+            <h2>About the Class</h2>
+            <p>This is a brief description of the class and its objectives.</p>
+        </section>
+        <section>
+            <h2>Student Admission Records</h2>
+            <form id="student-form">
+                <input type="text" id="admission-number" placeholder="Admission Number" required>
+                <input type="text" id="student-name" placeholder="Student Name" required>
+                <input type="text" id="semester" placeholder="Current Semester" required>
+                <button type="submit">Add Student</button>
+            </form>
+            <ul id="student-list"></ul>
+            <button id="update-semester">Update Semester</button>
+        </section>
+        <section>
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://chatgpt.com/" target="_blank">chatgpt</a></li>
+                <li><a href="https://elearning.maseno.ac.ke/login/index.php">E-Learning</a></li>
+                <li><a href="https://student.maseno.ac.ke/">Stdent Portal</a></li>
+            </ul>
+        </section>
+    </main>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <footer>
+        <p>&copy; 2025 Class Website</p>
+    </footer>
+    <script src="scripts/main.js"></script>
+</body>
+<style>
+    /* This file contains the styles for the class website. */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url("https://i.pinimg.com/236x/be/11/c7/be11c7c45a9abcb787c45bac7bdc568d.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+header {
+    background: #1e9eee;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+nav {
+    margin: 20px 0;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+nav a:hover {
+    background: #e8491d;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+footer {
+    background: #1691dd;
+    color: #ffffff;
+    text-align: center;
+    padding: 7px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: auto;
+}
+
+/* New styles for the student form and list */
+#student-form {
+    margin: 20px 0;
+}
+
+#student-form input {
+    margin-right: 10px;
+    padding: 5px;
+}
+
+#student-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#student-list li {
+    background: #e4e4e4;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+</style>
+<script>
+    const students = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const welcomeMessage = document.getElementById('welcome-message');
+    if (welcomeMessage) {
+        welcomeMessage.textContent = 'Welcome to the Class Website!';
+    }
+
+    const studentForm = document.getElementById('student-form');
+    if (studentForm) {
+        studentForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const admissionNumber = document.getElementById('admission-number').value;
+            const studentName = document.getElementById('student-name').value;
+            const semester = document.getElementById('semester').value;
+
+            students.push({ admissionNumber, studentName, semester });
+            displayStudents();
+            studentForm.reset();
+        });
+    }
+
+    const updateSemesterButton = document.getElementById('update-semester');
+    if (updateSemesterButton) {
+        updateSemesterButton.addEventListener('click', () => {
+            // Logic to update semester can be added here
+            alert('Semester updated!');
+        });
+    }
+});
+
+function displayStudents() {
+    const studentList = document.getElementById('student-list');
+    studentList.innerHTML = '';
+    students.forEach(student => {
+        const li = document.createElement('li');
+        li.textContent = `${student.admissionNumber} - ${student.studentName} (${student.semester})`;
+        studentList.appendChild(li);
+    });
+}
+
+</script>
+</html>
